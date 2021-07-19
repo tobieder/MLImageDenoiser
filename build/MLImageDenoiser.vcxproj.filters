@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\ImageViewport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\MLImageDenoiser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\build\CMakeFiles\3.20.0-rc5\CompilerIdCXX\CMakeCXXCompilerId.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\ImageViewport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\MLImageDenoiser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\MLImageDenoiser.qrc" />
+    <None Include="C:\dev\MLImageDenoiser_CMAKE\MLImageDenoiser\MLImageDenoiser.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{910D42FB-5984-3C7A-BC2C-22D46E86418B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C70E5876-79F1-38F9-85F2-46CEED37DEC0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
