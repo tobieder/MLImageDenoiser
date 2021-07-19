@@ -1,3 +1,3 @@
 [submodule "vendor/oidn"]
 	path = vendor/oidn
-	url = https://github.com/OpenImageDenoise/oidn
+	url = https://github.com/OpenImageDenoise/oidn.git
