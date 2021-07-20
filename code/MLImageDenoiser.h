@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtCore/qobject.h>
+
 #include <QtWidgets/QMainWindow>
 #include "ui_MLImageDenoiser.h"
 

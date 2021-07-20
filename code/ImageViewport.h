@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QtCore/qobject.h>
+
 #include <QLabel>
 #include <QWheelEvent>
 #include <QAction>
