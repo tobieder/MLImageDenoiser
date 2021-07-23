@@ -24,6 +24,13 @@ ImageViewport::ImageViewport(QWidget* _parent)
         m_CurrentView = CurrentView::Input;
         SetImageSize(QString::number(m_ImageOrig.width()) + "x" + QString::number(m_ImageOrig.height()));
     }
+    else
+    {
+        // Loading an example image as default.
+        LoadImage("../example_imgs/cornell.png");
+        m_CurrentView = CurrentView::Input;
+        SetImageSize(QString::number(m_ImageOrig.width()) + "x" + QString::number(m_ImageOrig.height()));
+    }
 }
 
 void ImageViewport::SetImageOrig(QImage _image)
