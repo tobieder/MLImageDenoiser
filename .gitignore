@@ -18,6 +18,7 @@ mono_crash.*
 
 # CMake
 [Bb]uild/
+[Vv]endor/
 
 # Build results
 [Dd]ebug/

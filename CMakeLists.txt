@@ -27,44 +27,41 @@ qt5_wrap_ui(ALL_SOURCES code/MLImageDenoiser.ui)
 if(WIN32)
 	add_executable(MLImageDenoiser WIN32 ${MAIN_CPP} ${ALL_SOURCES} ${MAIN_HEADER})
 	
-	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Debug/common.lib)
-	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Debug/utils.lib)
-	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Debug/OpenImageDenoise.lib)
-	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn/vendor/tbb/lib/intel64/vc14/tbb_debug.lib)
+	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn-windows/lib/OpenImageDenoise.lib)
+	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn-windows/lib/tbb.lib)
+	
+	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn-windows/lib/OpenImageDenoise.lib)
+	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn-windows/lib/tbb.lib)
 
 	add_custom_command(TARGET MLImageDenoiser
 						POST_BUILD
 						COMMAND "${CMAKE_COMMAND}" -E copy 
-								"$(SolutionDir)/../vendor/oidn/build/$<$<CONFIG:Release>:Release>$<$<CONFIG:Debug>:Debug>/OpenImageDenoise.dll"
+								"$(SolutionDir)/../vendor/oidn-windows/bin/OpenImageDenoise.dll"
 								"$(SolutionDir)/$<$<CONFIG:Release>:Release>$<$<CONFIG:Debug>:Debug>/OpenImageDenoise.dll"
 						COMMENT "Copying OpenImageDenoise.dll to required directory.")
 						
 	add_custom_command(TARGET MLImageDenoiser
 						POST_BUILD
 						COMMAND "${CMAKE_COMMAND}" -E copy 
-								"$(SolutionDir)/../vendor/oidn/vendor/tbb/redist/intel64/vc14/tbb12$<$<CONFIG:Release>:>$<$<CONFIG:Debug>:_debug>.dll"
-								"$(SolutionDir)/$<$<CONFIG:Release>:Release>$<$<CONFIG:Debug>:Debug>/tbb12$<$<CONFIG:Release>:>$<$<CONFIG:Debug>:_debug>.dll"
-						COMMENT "Copying tbb12_debug.dll to required directory.")
+								"$(SolutionDir)/../vendor/oidn-windows/bin/tbb12.dll"
+								"$(SolutionDir)/$<$<CONFIG:Release>:Release>$<$<CONFIG:Debug>:Debug>/tbb12.dll"
+						COMMENT "Copying tbb12.dll to required directory.")
 						
-	add_custom_command(
-    TARGET MLImageDenoiser PRE_BUILD
-    COMMAND echo Configuration is $<$<CONFIG:Release>:Release>$<$<CONFIG:Debug>:Debug>
-	)
-						
-	#copy /Y "$(SolutionDir)\..\vendor\oidn\build\Debug\OpenImageDenoise.dll" "$(SolutionDir)\Debug\OpenImageDenoise.dll"
-	#copy /Y "$(SolutionDir)\..\vendor\oidn\vendor\tbb\redist\intel64\vc14\tbb12_debug.dll" "$(SolutionDir)\Debug\tbb12_debug.dll"
 	
-	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Release/common.lib)
-	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Release/utils.lib)
-	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn/build/Release/OpenImageDenoise.lib)
-	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn/vendor/tbb/lib/intel64/vc14/tbb.lib)
+	include_directories("vendor/oidn-windows/include")
+	
 else(WIN32)
 	add_executable(MLImageDenoiser ${MAIN_CPP} ${ALL_SOURCES} ${MAIN_HEADER})
+	
+	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn-linux/lib/libOpenImageDenoise.so.1.4.1)
+	target_link_libraries(MLImageDenoiser debug ${CMAKE_SOURCE_DIR}/vendor/oidn-linux/lib/libtbb.so.12.2)
+	
+	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn-linux/lib/libOpenImageDenoise.so.1.4.1)
+	target_link_libraries(MLImageDenoiser optimized ${CMAKE_SOURCE_DIR}/vendor/oidn-linux/lib/libtbb.so.12.2)
+						
+	
+	include_directories("vendor/oidn-linux/include")
+	
 endif(WIN32)
-
-include_directories("vendor/oidn")
-include_directories("vendor/oidn/build")
-include_directories("vendor/oidn/include")
-include_directories("vendor/oidn/vendor/tbb/include")
 
 target_link_libraries(${NAME} Qt5::Widgets)
